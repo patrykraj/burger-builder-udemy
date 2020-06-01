@@ -114,6 +114,7 @@ class ContactData extends Component {
       ingredients: this.props.ingredients,
       price: this.props.price + 2,
       orderForm: formData,
+      userId: this.props.userId,
     };
 
     // axios
@@ -127,7 +128,7 @@ class ContactData extends Component {
     //     this.setState({ loading: true });
     //     console.log(err);
     //   });
-    this.props.onPurchaseBurger(order);
+    this.props.onPurchaseBurger(order, this.props.token);
   };
 
   inputChangedHandler = (e, inputIdentifier) => {
@@ -204,13 +205,15 @@ const mapStateToProps = (state) => {
     ingredients: state.burgerBuilder.ingredients,
     price: state.burgerBuilder.totalPrice,
     loading: state.orderReducer.loading,
+    token: state.authReducer.token,
+    userId: state.authReducer.userId,
   };
 };
 
 const mapDipatchToProps = (dispatch) => {
   return {
-    onPurchaseBurger: (payload) =>
-      dispatch(orderActions.purchaseBurger(payload)),
+    onPurchaseBurger: (payload, token) =>
+      dispatch(orderActions.purchaseBurger(payload, token)),
   };
 };
 

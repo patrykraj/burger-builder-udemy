@@ -1,4 +1,5 @@
 import React, { useState } from "react";
+import { connect } from "react-redux";
 
 // import Aux from "../../hoc/Auxs/Aux";
 import Content from "./Layout.css";
@@ -10,8 +11,12 @@ const Layout = (props) => {
 
   return (
     <>
-      <Toolbar toggleSideDrawer={() => toggleShowSideDrawer} />
+      <Toolbar
+        isAuth={props.isAuthenticated}
+        toggleSideDrawer={() => toggleShowSideDrawer}
+      />
       <SideDrawer
+        isAuth={props.isAuthenticated}
         open={showSideDrawer}
         toggleSideDrawer={() => toggleShowSideDrawer(false)}
       />
@@ -20,4 +25,10 @@ const Layout = (props) => {
   );
 };
 
-export default Layout;
+const mapStateToProps = (state) => {
+  return {
+    isAuthenticated: state.authReducer.token !== null,
+  };
+};
+
+export default connect(mapStateToProps)(Layout);

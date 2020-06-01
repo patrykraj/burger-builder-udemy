@@ -5,6 +5,7 @@ const initialState = {
   totalPrice: 3,
   error: false,
   loading: false,
+  building: false,
 };
 
 const reducer = (state = initialState, action) => {
@@ -13,6 +14,7 @@ const reducer = (state = initialState, action) => {
       return {
         ...state,
         ingredients: action.payload,
+        building: true,
       };
 
     case actionTypes.SET_PRICE:
@@ -32,6 +34,7 @@ const reducer = (state = initialState, action) => {
           meat: action.payload.meat,
         },
         error: false,
+        building: false,
       };
 
     case actionTypes.FETCH_INGREDIENTS_FAILED:
