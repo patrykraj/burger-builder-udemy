@@ -54,11 +54,11 @@ export const authInit = (email, password, isSignup) => {
     };
 
     let url =
-      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=AIzaSyAPu8FBtFo-lKKVz6ApLrf9n54de1_szFc";
+      "https://identitytoolkit.googleapis.com/v1/accounts:signUp?key=[firebase_key]";
 
     if (!isSignup) {
       url =
-        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=AIzaSyAPu8FBtFo-lKKVz6ApLrf9n54de1_szFc";
+        "https://identitytoolkit.googleapis.com/v1/accounts:signInWithPassword?key=[firebase_key]";
     }
 
     axios
